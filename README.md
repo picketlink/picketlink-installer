@@ -11,13 +11,15 @@ To run the installer, you need the following:
     * Oracle Java SE
     * Oracle JRockit
 
-2. Maven 3.0.0 or newer, to build and deploy the examples
+2. Apache Ant 1.8.4or newer
+
+3. Maven 3.0.0 or newer, to build and deploy the examples
     * If you have not yet installed Maven, see the [Maven Getting Started Guide](http://maven.apache.org/guides/getting-started/index.html) for details.
     * If you have installed Maven, you can check the version by typing the following in a command line:
 
             mvn --version
 
-3. The JBoss Enterprise Application Platform 6 distribution ZIP or the JBoss AS 7 distribution ZIP.
+4. The JBoss Enterprise Application Platform 6 distribution ZIP or the JBoss AS 7 distribution ZIP.
     * For information on how to install and run JBoss, refer to the product documentation.
 
 Check Out the Source
@@ -29,6 +31,8 @@ Check Out the Source
 
 Usage
 ----------------------------------
+
+Before starting, make sure you have unzipped the JBoss Enterprise Application Platform 6 distribution ZIP.
 
 1. After you clone the repository, use the following command to create the distribution package:
 
