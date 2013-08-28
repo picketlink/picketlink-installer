@@ -58,3 +58,12 @@ Before starting, make sure you have unzipped the JBoss Enterprise Application Pl
         ant
 
 Now just follow the instructions.
+
+Note for PicketLink 2.1 Users
+----------------------------------
+
+The installer updates the PicketLink module(which defaults to 2.1.x) in JBoss EAP 6 with the 2.5 libraries.
+
+You don't need to change any configuration in your deployment to start using this version. The module name is still the same:
+
+        org.picketlink
