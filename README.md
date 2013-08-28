@@ -11,7 +11,7 @@ To run the installer, you need the following:
     * Oracle Java SE
     * Oracle JRockit
 
-2. Apache Ant 1.8.4or newer
+2. Apache Ant 1.8.4 or newer
 
 3. Maven 3.0.0 or newer, to build and deploy the examples
     * If you have not yet installed Maven, see the [Maven Getting Started Guide](http://maven.apache.org/guides/getting-started/index.html) for details.
