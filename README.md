@@ -6,7 +6,9 @@ Introduction
 
 The PicketLink Installer provides an easy way to get started with PicketLink.
 
-It configures a JBoss Enterprise Platform 6 installation with all the necessary modules, some basic configurations and quickstarts.
+It configures a JBoss Enterprise Application Platform 6 installation with all the necessary modules, some basic configurations and quickstarts.
+
+Important Note: Once JBoss Enterprise Application Platform 6 is updated with PicketLink 2.5 libraries and tools, the installer will no longer be necessary.
 
 System Requirements
 -------------------
