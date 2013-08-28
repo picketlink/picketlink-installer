@@ -41,6 +41,7 @@ Usage
 
 3. Now go to the directory created from the command above and execute the following command:
 
+        cd picketlink-installer-X.X.X
         ant
 
 Now just follow the instructions.
