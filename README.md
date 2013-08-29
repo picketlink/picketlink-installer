@@ -59,11 +59,22 @@ Before starting, make sure you have unzipped the JBoss Enterprise Application Pl
 
 Now just follow the instructions.
 
+PicketLink Documentation
+------------
+
+The documentation is available from the following [link](http://docs.jboss.org/picketlink/2/latest/).
+
 Note for PicketLink Federation 2.1 Users
 ----------------------------------
 
 The installer updates the PicketLink module(which defaults to 2.1.x) in JBoss EAP 6 with the 2.5 libraries.
 
-You don't need to change any configuration in your deployment to start using this version. The module name is still the same:
+You don't need to change any configuration in your deployment to start using this version. The *META-INF/jboss-deployment-structure.xml* still looks the same:
 
-        org.picketlink
+        <jboss-deployment-structure>
+          <deployment>
+            <dependencies>
+              <module name="org.picketlink" />
+            </dependencies>
+          </deployment>
+        </jboss-deployment-structure>

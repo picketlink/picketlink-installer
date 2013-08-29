@@ -99,9 +99,9 @@
 
     <copy todir="${modules.dir}/org/picketlink/common/main" file="${picketlink.common.lib.file}" />
     <copy todir="${modules.dir}/org/picketlink/config/main" file="${picketlink.config.lib.file}"/>
-    <copy todir="${modules.dir}/org/picketlink/core/main" file="${picketlink.core.api.lib.file}"/>
+    <copy todir="${modules.dir}/org/picketlink/core/api/main" file="${picketlink.core.api.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/core/main" file="${picketlink.core.impl.lib.file}"/>
-    <copy todir="${modules.dir}/org/picketlink/idm/main" file="${picketlink.idm.api.lib.file}"/>
+    <copy todir="${modules.dir}/org/picketlink/idm/api/main" file="${picketlink.idm.api.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/idm/main" file="${picketlink.idm.impl.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/federation/main" file="${picketlink.federation.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/federation/bindings/main" file="${picketlink.bindings.jbas7.lib.file}"/>

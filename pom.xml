@@ -83,11 +83,6 @@
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
-      <artifactId>picketlink-idm-simple-schema</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.picketlink</groupId>
       <artifactId>picketlink-federation</artifactId>
       <version>${project.version}</version>
     </dependency>

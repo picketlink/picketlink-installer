@@ -17,16 +17,17 @@
 
 <module xmlns="urn:jboss:module:1.1" name="org.picketlink.core">
   <resources>
-    <resource-root path="picketlink-api-2.5.0-SNAPSHOT.jar"/>
     <resource-root path="picketlink-impl-2.5.0-SNAPSHOT.jar"/>
   </resources>
 
   <dependencies>
     <module name="javax.enterprise.api"/>
     <module name="javax.inject.api"/>
-    <module name="javax.servlet.api"/>
-    <module name="javax.persistence.api"/>
+    <module name="javax.servlet.api" optional="true" />
+    <module name="javax.persistence.api" optional="true"/>
     <module name="org.picketlink.common" />
-    <module name="org.picketlink.idm" export="true"/>
+    <module name="org.picketlink.core.api" export="true"/>
+    <module name="org.picketlink.idm.api" export="true" />
+    <module name="org.picketlink.idm" />
   </dependencies>
 </module>
