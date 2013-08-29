@@ -116,7 +116,7 @@
 
   <target name="install-picketlink-quickstarts-security-domains"
           description="Installs the Security Domains for the PicketLink Quickstarts">
-    <echo>Configuring the Security Domains for the PicketLink Federation Quickstarts ...</echo>
+    <echo>Configuring Security Domains for the PicketLink Federation Quickstarts ...</echo>
     <xslt style="${picketlink.jboss.as.dist}/addSecurityDomain.xslt"
           basedir="${jboss.as.dist.dir}/standalone/configuration"
           destdir="${jboss.as.dist.dir}/standalone/configuration" includes="standalone.xml"/>
