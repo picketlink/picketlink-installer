@@ -35,7 +35,7 @@
   <target name="install" depends="prepare,backup-as7-files,install-picketlink,install-picketlink-quickstarts">
     <echo>
       ################################################################
-      Thanks for using PicketLink.
+                      Thanks for using PicketLink.
       ################################################################
     </echo>
   </target>
