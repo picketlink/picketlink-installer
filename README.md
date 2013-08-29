@@ -57,6 +57,10 @@ Before starting, make sure you have unzipped the JBoss Enterprise Application Pl
         cd picketlink-installer-X.X.X
         ant
 
+If you want use the installer for a particular version (eg.: 2.5.0.Final) execute the following command before all commands above:
+
+
+
 Now just follow the instructions.
 
 PicketLink Documentation
