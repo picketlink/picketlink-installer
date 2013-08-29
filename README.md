@@ -43,9 +43,13 @@ Usage
 
 Before starting, make sure you have unzipped the JBoss Enterprise Application Platform 6 distribution ZIP.
 
-1. After you clone the repository, use the following command to create the distribution package:
+If you want use the installer for a particular version (eg.: 2.5.0.Final) execute the following command:
 
         cd picketlink-installer
+        git checkout v2.5.0.Final
+
+1. After you clone the repository, use the following command to create the distribution package:
+
         mvn clean install
 2. Enter the target directory and unzip the distribution package:
 
@@ -56,10 +60,6 @@ Before starting, make sure you have unzipped the JBoss Enterprise Application Pl
 
         cd picketlink-installer-X.X.X
         ant
-
-If you want use the installer for a particular version (eg.: 2.5.0.Final) execute the following command before all commands above:
-
-
 
 Now just follow the instructions.
 
