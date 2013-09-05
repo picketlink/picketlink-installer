@@ -40,7 +40,13 @@
     <module name="org.jboss.ws.spi" />
     <module name="org.apache.cxf" />
     <module name="org.picketlink.common"/>
-    <module name="org.picketlink.config"/>
+    <module name="org.picketlink.config">
+      <imports>
+        <exclude-set>
+          <path name="org.picketlink.config.idm" />
+        </exclude-set>
+      </imports>
+    </module>
   </dependencies>
 
 </module>
