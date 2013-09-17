@@ -20,17 +20,7 @@
 
   <property file="installer.properties"/>
 
-  <property name="picketlink.common.lib.file" value="config/lib/picketlink-common-${project.version}.jar"/>
-  <property name="picketlink.config.lib.file" value="config/lib/picketlink-config-${project.version}.jar"/>
-  <property name="picketlink.core.api.lib.file" value="config/lib/picketlink-api-${project.version}.jar"/>
-  <property name="picketlink.core.impl.lib.file" value="config/lib/picketlink-impl-${project.version}.jar"/>
-  <property name="picketlink.idm.api.lib.file" value="config/lib/picketlink-idm-api-${project.version}.jar"/>
-  <property name="picketlink.idm.impl.lib.file" value="config/lib/picketlink-idm-impl-${project.version}.jar"/>
-  <property name="picketlink.federation.lib.file" value="config/lib/picketlink-federation-${project.version}.jar"/>
-  <property name="picketlink.bindings.jbas7.lib.file" value="config/lib/picketlink-jbas7-${project.version}.jar"/>
-  <property name="picketlink.quickstarts.dist.file"
-            value="config/lib/picketlink-quickstarts-${picketlink.federation.quickstarts.version}-webapps-jboss-as7.zip"/>
-  <property name="picketlink.jboss.as.dist" value="config/xslt/${jboss.as.dist}"/>
+  <property name="installer.dir" value="${basedir}"/>
 
   <target name="install" depends="prepare,backup-as7-files,install-picketlink,install-picketlink-quickstarts">
     <echo>
@@ -49,10 +39,11 @@
       This installer will update your JBoss Enterprise Application Platform 6 installation with the
       following libraries and their dependencies:
 
-      - PicketLink Core ${project.version}
-      - PicketLink Identity Management ${project.version}
-      - PicketLink Federation ${project.version}
+      - PicketLink Core ${picketlink.version}
+      - PicketLink Identity Management ${picketlink.version}
+      - PicketLink Federation ${picketlink.version}
       - PicketLink Federation Quickstarts ${picketlink.federation.quickstarts.version}
+      - PicketLink Subsystem ${picketlink.as.extension.version}
 
       New modules will be added to your installation.
       ####################################################################################
@@ -85,6 +76,7 @@
     <delete dir="${modules.dir}/org/picketlink/core/"/>
     <delete dir="${modules.dir}/org/picketlink/idm/"/>
     <delete dir="${modules.dir}/org/picketlink/federation/"/>
+    <delete dir="${modules.dir}/org/picketlink/as/"/>
 
   </target>
 
@@ -95,14 +87,29 @@
     <copy file="${jboss.as.dist.dir}/standalone/configuration/standalone.xml"
           tofile="${jboss.as.dist.dir}/standalone/configuration/standalone.xml.bkp"/>
 
-    <copydir src="config/module" dest="${modules.dir}/org/picketlink/" forceoverwrite="true"/>
+    <copydir src="${installer.dir}/config/module" dest="${modules.dir}/org/picketlink/" forceoverwrite="true"/>
+
+    <property name="picketlink.common.lib.file" value="${installer.dir}/config/lib/picketlink-common-${picketlink.version}.jar"/>
+    <property name="picketlink.config.lib.file" value="${installer.dir}/config/lib/picketlink-config-${picketlink.version}.jar"/>
+    <property name="picketlink.core.api.lib.file" value="${installer.dir}/config/lib/picketlink-api-${picketlink.version}.jar"/>
+    <property name="picketlink.core.impl.lib.file" value="${installer.dir}/config/lib/picketlink-impl-${picketlink.version}.jar"/>
+    <property name="picketlink.idm.api.lib.file" value="${installer.dir}/config/lib/picketlink-idm-api-${picketlink.version}.jar"/>
+    <property name="picketlink.idm.impl.lib.file" value="${installer.dir}/config/lib/picketlink-idm-impl-${picketlink.version}.jar"/>
+    <property name="picketlink.idm.schema.lib.file" value="${installer.dir}/config/lib/picketlink-idm-simple-schema-${picketlink.version}.jar"/>
+    <property name="picketlink.federation.lib.file" value="${installer.dir}/config/lib/picketlink-federation-${picketlink.version}.jar"/>
+    <property name="picketlink.bindings.jbas7.lib.file" value="${installer.dir}/config/lib/picketlink-jbas7-${picketlink.version}.jar"/>
+    <property name="picketlink.quickstarts.dist.file" value="${installer.dir}/config/lib/picketlink-quickstarts-${picketlink.federation.quickstarts.version}-webapps-jboss-as7.zip"/>
+    <property name="picketlink.as.extension.lib.file" value="${installer.dir}/config/lib/picketlink-as-extension-${picketlink.as.extension.version}.jar"/>
+    <property name="picketlink.jboss.as.dist" value="${installer.dir}/config/xslt/${jboss.as.dist}"/>
 
     <copy todir="${modules.dir}/org/picketlink/common/main" file="${picketlink.common.lib.file}" />
+    <copy todir="${modules.dir}/org/picketlink/as/extension/main" file="${picketlink.as.extension.lib.file}" />
     <copy todir="${modules.dir}/org/picketlink/config/main" file="${picketlink.config.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/core/api/main" file="${picketlink.core.api.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/core/main" file="${picketlink.core.impl.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/idm/api/main" file="${picketlink.idm.api.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/idm/main" file="${picketlink.idm.impl.lib.file}"/>
+    <copy todir="${modules.dir}/org/picketlink/idm/schema/main" file="${picketlink.idm.schema.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/federation/main" file="${picketlink.federation.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/federation/bindings/main" file="${picketlink.bindings.jbas7.lib.file}"/>
 

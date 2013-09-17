@@ -80,17 +80,31 @@
     <dependencySet>
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <includes>
+        <include>org.picketlink:picketlink-idm-simple-schema</include>
+      </includes>
+      <outputDirectory>${installer.root.dir}/config/lib</outputDirectory>
+    </dependencySet>
+    <dependencySet>
+      <useTransitiveDependencies>false</useTransitiveDependencies>
+      <includes>
         <include>org.picketlink:picketlink-federation</include>
       </includes>
       <outputDirectory>${installer.root.dir}/config/lib</outputDirectory>
     </dependencySet>
-		<dependencySet>
-			<useTransitiveDependencies>false</useTransitiveDependencies>
-			<includes>
-				<include>org.picketlink.distribution:picketlink-jbas7</include>
-			</includes>
-			<outputDirectory>${installer.root.dir}/config/lib</outputDirectory>
-		</dependencySet>
+    <dependencySet>
+      <useTransitiveDependencies>false</useTransitiveDependencies>
+      <includes>
+        <include>org.picketlink.distribution:picketlink-jbas7</include>
+      </includes>
+      <outputDirectory>${installer.root.dir}/config/lib</outputDirectory>
+    </dependencySet>
+    <dependencySet>
+      <useTransitiveDependencies>false</useTransitiveDependencies>
+      <includes>
+        <include>org.picketlink:picketlink-as-extension</include>
+      </includes>
+      <outputDirectory>${installer.root.dir}/config/lib</outputDirectory>
+    </dependencySet>
     <dependencySet>
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <includes>

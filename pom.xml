@@ -48,6 +48,7 @@
     <bundle.dir>${project.build.directory}/bundle</bundle.dir>
     <installer.root.dir>/picketlink-installer-${project.version}</installer.root.dir>
     <picketlink.federation.quickstarts.version>2.1.8.Final</picketlink.federation.quickstarts.version>
+    <picketlink.as.extension.version>1.1.0-SNAPSHOT</picketlink.as.extension.version>
   </properties>
 
   <dependencies>
@@ -83,6 +84,11 @@
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
+      <artifactId>picketlink-idm-simple-schema</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.picketlink</groupId>
       <artifactId>picketlink-federation</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -90,6 +96,11 @@
       <groupId>org.picketlink.distribution</groupId>
       <artifactId>picketlink-jbas7</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.picketlink</groupId>
+      <artifactId>picketlink-as-extension</artifactId>
+      <version>${picketlink.as.extension.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink.quickstarts</groupId>
