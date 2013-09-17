@@ -3,10 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.picketlink</groupId>
   <artifactId>picketlink-installer</artifactId>
-  <version>2.5.2-SNAPSHOT</version>
+  <version>1.2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>PicketLink: JBoss Application Server v7 Installer</name>
+  <name>PicketLink: JBoss Enterprise Application Platform Installer</name>
 
   <description>An ant script to install PicketLink in JBoss Application Server v7</description>
 
@@ -47,6 +47,7 @@
     <picketlink.installer.scm.connection>git@github.com:picketlink/picketlink-installer.git</picketlink.installer.scm.connection>
     <bundle.dir>${project.build.directory}/bundle</bundle.dir>
     <installer.root.dir>/picketlink-installer-${project.version}</installer.root.dir>
+    <picketlink.version>2.5.2-SNAPSHOT</picketlink.version>
     <picketlink.federation.quickstarts.version>2.1.8.Final</picketlink.federation.quickstarts.version>
     <picketlink.as.extension.version>1.2.0-SNAPSHOT</picketlink.as.extension.version>
   </properties>
@@ -55,47 +56,47 @@
     <dependency>
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-common</artifactId>
-      <version>${project.version}</version>
+      <version>${picketlink.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-config</artifactId>
-      <version>${project.version}</version>
+      <version>${picketlink.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-api</artifactId>
-      <version>${project.version}</version>
+      <version>${picketlink.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-impl</artifactId>
-      <version>${project.version}</version>
+      <version>${picketlink.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-idm-api</artifactId>
-      <version>${project.version}</version>
+      <version>${picketlink.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-idm-impl</artifactId>
-      <version>${project.version}</version>
+      <version>${picketlink.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-idm-simple-schema</artifactId>
-      <version>${project.version}</version>
+      <version>${picketlink.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
       <artifactId>picketlink-federation</artifactId>
-      <version>${project.version}</version>
+      <version>${picketlink.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink.distribution</groupId>
       <artifactId>picketlink-jbas7</artifactId>
-      <version>${project.version}</version>
+      <version>${picketlink.version}</version>
     </dependency>
     <dependency>
       <groupId>org.picketlink</groupId>
