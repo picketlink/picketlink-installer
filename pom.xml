@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.picketlink</groupId>
   <artifactId>picketlink-installer</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
+  <version>1.2.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>PicketLink: JBoss Enterprise Application Platform Installer</name>
@@ -47,9 +47,9 @@
     <picketlink.installer.scm.connection>git@github.com:picketlink/picketlink-installer.git</picketlink.installer.scm.connection>
     <bundle.dir>${project.build.directory}/bundle</bundle.dir>
     <installer.root.dir>/picketlink-installer-${project.version}</installer.root.dir>
-    <picketlink.version>2.5.2-SNAPSHOT</picketlink.version>
+    <picketlink.version>2.5.3-SNAPSHOT</picketlink.version>
     <picketlink.federation.quickstarts.version>2.1.8.Final</picketlink.federation.quickstarts.version>
-    <picketlink.as.extension.version>1.2.0-SNAPSHOT</picketlink.as.extension.version>
+    <picketlink.as.extension.version>1.2.1-SNAPSHOT</picketlink.as.extension.version>
   </properties>
 
   <dependencies>
