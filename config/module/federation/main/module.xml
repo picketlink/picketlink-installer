@@ -17,7 +17,7 @@
 
 <module xmlns="urn:jboss:module:1.1" name="org.picketlink.federation">
   <resources>
-    <resource-root path="picketlink-federation-2.5.3-SNAPSHOT.jar"/>
+    <resource-root path="picketlink-federation-2.5.2.Final.jar"/>
   </resources>
 
   <dependencies>
