@@ -54,7 +54,7 @@
             serverLocation = project.getProperty("jboss.as.dist.dir");
 
             if(serverLocation.isEmpty()){
-                println("You must specify a valid location to a existing JBoss Application Server installation.");
+                println("You must specify a valid location to a existing JBoss Application Server installation..");
                 java.lang.System.exit(1)
             }
         ]]>
@@ -87,8 +87,7 @@
     <echo message="Backing up the original standalone.xml file and org/picketlink/main directory."/>
 
     <delete dir="${modules.dir}/org/picketlink/main/"/>
-
-    <copydir src="${modules.dir}/org/picketlink/main.bkp" dest="${modules.dir}/org/picketlink/main" />
+    <copydir src="${modules.dir}/org/picketlink.bkp" dest="${modules.dir}/org/picketlink" />
     <copy file="${jboss.as.dist.dir}/standalone/configuration/standalone.xml.bkp" failonerror="false" overwrite="true"
           tofile="${jboss.as.dist.dir}/standalone/configuration/standalone.xml"/>
 
@@ -97,13 +96,12 @@
     <delete dir="${modules.dir}/org/picketlink/core/"/>
     <delete dir="${modules.dir}/org/picketlink/idm/"/>
     <delete dir="${modules.dir}/org/picketlink/federation/"/>
-    <delete dir="${modules.dir}/org/picketlink/as/"/>
   </target>
 
   <target name="pre-install-picketlink" description="Update the PicketLink Module libraries and definition">
     <echo>Updating PicketLink Modules ...</echo>
 
-    <copydir src="${modules.dir}/org/picketlink/main" dest="${modules.dir}/org/picketlink/main.bkp" forceoverwrite="true" />
+    <copydir src="${modules.dir}/org/picketlink" dest="${modules.dir}/org/picketlink.bkp" forceoverwrite="true" />
     <copy file="${jboss.as.dist.dir}/standalone/configuration/standalone.xml"
           tofile="${jboss.as.dist.dir}/standalone/configuration/standalone.xml.bkp"/>
 
