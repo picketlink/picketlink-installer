@@ -25,13 +25,14 @@
 		<fileSet>
 			<directory>config/</directory>
 			<includes>
-				<include>xslt/eap/*.*</include>
+				<include>**/**</include>
 			</includes>
+            <filtered>true</filtered>
 			<outputDirectory>${installer.root.dir}/config</outputDirectory>
 		</fileSet>
     <fileSet>
-      <directory>config/module</directory>
-      <outputDirectory>${installer.root.dir}/config/module</outputDirectory>
+      <directory>config</directory>
+      <outputDirectory>${installer.root.dir}/config</outputDirectory>
     </fileSet>
   </fileSets>
 	<dependencySets>
@@ -101,17 +102,16 @@
     <dependencySet>
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <includes>
-        <include>org.picketlink:picketlink-as-extension</include>
+        <include>org.picketlink.distribution:picketlink-wildfly8</include>
       </includes>
       <outputDirectory>${installer.root.dir}/config/lib</outputDirectory>
     </dependencySet>
     <dependencySet>
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <includes>
-        <include>org.picketlink.quickstarts:picketlink-quickstarts</include>
+        <include>org.picketlink:picketlink-as-extension</include>
       </includes>
       <outputDirectory>${installer.root.dir}/config/lib</outputDirectory>
-      <outputFileNameMapping>picketlink-quickstarts-${picketlink.federation.quickstarts.version}-webapps-jboss-as7.zip</outputFileNameMapping>
     </dependencySet>
 	</dependencySets>
 

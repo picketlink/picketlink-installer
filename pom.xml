@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.picketlink</groupId>
   <artifactId>picketlink-installer</artifactId>
-  <version>1.1.5-SNAPSHOT</version>
+  <version>1.1.5.Final</version>
   <packaging>pom</packaging>
 
   <name>PicketLink: JBoss Application Server v7 Installer</name>
@@ -25,15 +25,6 @@
     <url>http://www.jboss.org</url>
   </organization>
 
-  <developers>
-    <developer>
-      <name>Pedro Silva</name>
-      <roles>
-        <role>Project Lead</role>
-      </roles>
-    </developer>
-  </developers>
-
   <licenses>
     <license>
       <name>lgpl</name>
@@ -47,9 +38,7 @@
     <picketlink.installer.scm.connection>git@github.com:picketlink/picketlink-installer.git</picketlink.installer.scm.connection>
     <bundle.dir>${project.build.directory}/bundle</bundle.dir>
     <installer.root.dir>/picketlink-installer-${project.version}</installer.root.dir>
-    <picketlink.version>2.5.3-SNAPSHOT</picketlink.version>
-    <picketlink.federation.quickstarts.version>2.1.8.Final</picketlink.federation.quickstarts.version>
-    <picketlink.as.extension.version>1.1.2.Final</picketlink.as.extension.version>
+    <picketlink.version>2.6.0.CR1</picketlink.version>
   </properties>
 
   <dependencies>
@@ -99,16 +88,9 @@
       <version>${picketlink.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.picketlink</groupId>
-      <artifactId>picketlink-as-extension</artifactId>
-      <version>${picketlink.as.extension.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.picketlink.quickstarts</groupId>
-      <artifactId>picketlink-quickstarts</artifactId>
-      <version>${picketlink.federation.quickstarts.version}</version>
-      <classifier>webapps-jboss-as7</classifier>
-      <type>zip</type>
+      <groupId>org.picketlink.distribution</groupId>
+      <artifactId>picketlink-wildfly8</artifactId>
+      <version>${picketlink.version}</version>
     </dependency>
   </dependencies>
 
@@ -126,7 +108,10 @@
             </goals>
             <configuration>
               <appendAssemblyId>false</appendAssemblyId>
-              <finalName>picketlink-${project.version}-installer</finalName>
+              <finalName>picketlink-installer-${project.version}</finalName>
+              <filters>
+                <filter>installer.properties</filter>
+              </filters>
               <descriptors>
                 <descriptor>${basedir}/assembly.xml</descriptor>
               </descriptors>

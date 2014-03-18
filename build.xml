@@ -22,7 +22,7 @@
 
   <property name="installer.dir" value="${basedir}"/>
 
-  <target name="install" depends="prepare,backup-as7-files,install-picketlink,install-picketlink-quickstarts">
+  <target name="install" depends="prepare,backup-as7-files,install-picketlink-eap,install-picketlink-wildfly">
     <echo>
       ################################################################
                       Thanks for using PicketLink.
@@ -36,20 +36,29 @@
       ####################################################################################
       Welcome to the PicketLink Installer
 
-      This installer will update your JBoss Enterprise Application Platform 6 installation with the
+      This installer will update your JBoss Application Server installation with the
       following libraries and their dependencies:
 
       - PicketLink Core ${picketlink.version}
       - PicketLink Identity Management ${picketlink.version}
       - PicketLink Federation ${picketlink.version}
-      - PicketLink Federation Quickstarts ${picketlink.federation.quickstarts.version}
-      - PicketLink Subsystem ${picketlink.as.extension.version}
 
       New modules will be added to your installation.
       ####################################################################################
     </echo>
-    <input message="Please enter the path to your JBoss Enterprise Application Platform 6 installation: "
-           addproperty="jboss.as.dist.dir"/>
+    <input message="Which JBoss Application Server are you using ?" addproperty="target.container" defaultvalue="eap" validargs="eap,wildfly"/>
+    <input message="Please enter the path to your JBoss Application Server installation: " addproperty="jboss.as.dist.dir"/>
+
+    <script language="javascript">
+        <![CDATA[
+            serverLocation = project.getProperty("jboss.as.dist.dir");
+
+            if(serverLocation.isEmpty()){
+                println("You must specify a valid location to a existing JBoss Application Server installation.");
+                java.lang.System.exit(1)
+            }
+        ]]>
+    </script>
     <property name="modules.dir" value="${jboss.as.dist.dir}/modules/system/layers/base"/>
   </target>
 
@@ -58,6 +67,18 @@
       <and>
         <available file="${jboss.as.dist.dir}/standalone/configuration/standalone.xml.bkp"/>
       </and>
+    </condition>
+  </target>
+
+  <target name="eap.check.test">
+    <condition property="eap.check">
+         <equals arg1="${target.container}" arg2="eap"/>
+    </condition>
+  </target>
+
+  <target name="wildfly.check.test">
+    <condition property="wildfly.check">
+         <equals arg1="${target.container}" arg2="wildfly"/>
     </condition>
   </target>
 
@@ -77,17 +98,16 @@
     <delete dir="${modules.dir}/org/picketlink/idm/"/>
     <delete dir="${modules.dir}/org/picketlink/federation/"/>
     <delete dir="${modules.dir}/org/picketlink/as/"/>
-
   </target>
 
-  <target name="install-picketlink" description="Update the PicketLink Module libraries and definition">
-    <echo>Updating PicketLink Module ...</echo>
+  <target name="pre-install-picketlink" description="Update the PicketLink Module libraries and definition">
+    <echo>Updating PicketLink Modules ...</echo>
 
     <copydir src="${modules.dir}/org/picketlink/main" dest="${modules.dir}/org/picketlink/main.bkp" forceoverwrite="true" />
     <copy file="${jboss.as.dist.dir}/standalone/configuration/standalone.xml"
           tofile="${jboss.as.dist.dir}/standalone/configuration/standalone.xml.bkp"/>
 
-    <copydir src="${installer.dir}/config/module" dest="${modules.dir}/org/picketlink/" forceoverwrite="true"/>
+    <copydir src="config/${target.container}/module" dest="${modules.dir}/org/picketlink/" forceoverwrite="true"/>
 
     <property name="picketlink.common.lib.file" value="${installer.dir}/config/lib/picketlink-common-${picketlink.version}.jar"/>
     <property name="picketlink.config.lib.file" value="${installer.dir}/config/lib/picketlink-config-${picketlink.version}.jar"/>
@@ -96,20 +116,28 @@
     <property name="picketlink.idm.api.lib.file" value="${installer.dir}/config/lib/picketlink-idm-api-${picketlink.version}.jar"/>
     <property name="picketlink.idm.impl.lib.file" value="${installer.dir}/config/lib/picketlink-idm-impl-${picketlink.version}.jar"/>
     <property name="picketlink.idm.schema.lib.file" value="${installer.dir}/config/lib/picketlink-idm-simple-schema-${picketlink.version}.jar"/>
-    <property name="picketlink.federation.lib.file" value="${installer.dir}/config/lib/picketlink-federation-${picketlink.version}.jar"/>
-    <property name="picketlink.bindings.jbas7.lib.file" value="${installer.dir}/config/lib/picketlink-jbas7-${picketlink.version}.jar"/>
-    <property name="picketlink.quickstarts.dist.file" value="${installer.dir}/config/lib/picketlink-quickstarts-${picketlink.federation.quickstarts.version}-webapps-jboss-as7.zip"/>
-    <property name="picketlink.as.extension.lib.file" value="${installer.dir}/config/lib/picketlink-as-extension-${picketlink.as.extension.version}.jar"/>
-    <property name="picketlink.jboss.as.dist" value="${installer.dir}/config/xslt/${jboss.as.dist}"/>
 
     <copy todir="${modules.dir}/org/picketlink/common/main" file="${picketlink.common.lib.file}" />
-    <copy todir="${modules.dir}/org/picketlink/as/extension/main" file="${picketlink.as.extension.lib.file}" />
     <copy todir="${modules.dir}/org/picketlink/config/main" file="${picketlink.config.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/core/api/main" file="${picketlink.core.api.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/core/main" file="${picketlink.core.impl.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/idm/api/main" file="${picketlink.idm.api.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/idm/main" file="${picketlink.idm.impl.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/idm/schema/main" file="${picketlink.idm.schema.lib.file}"/>
+
+    <delete>
+      <fileset dir="${modules.dir}/org/picketlink/main">
+        <include name="*.jar"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="install-picketlink-eap" description="Update the PicketLink Module libraries and definition" depends="eap.check.test,pre-install-picketlink" if="eap.check">
+    <echo>Updating PicketLink Module for JBoss Enterprise Application Platform 6...</echo>
+
+    <property name="picketlink.federation.lib.file" value="${installer.dir}/config/lib/picketlink-federation-${picketlink.version}.jar"/>
+    <property name="picketlink.bindings.jbas7.lib.file" value="${installer.dir}/config/lib/picketlink-jbas7-${picketlink.version}.jar"/>
+
     <copy todir="${modules.dir}/org/picketlink/federation/main" file="${picketlink.federation.lib.file}"/>
     <copy todir="${modules.dir}/org/picketlink/federation/bindings/main" file="${picketlink.bindings.jbas7.lib.file}"/>
 
@@ -118,32 +146,22 @@
         <include name="*.jar"/>
       </fileset>
     </delete>
-
   </target>
 
-  <target name="install-picketlink-quickstarts-security-domains"
-          description="Installs the Security Domains for the PicketLink Quickstarts">
-    <echo>Configuring Security Domains for the PicketLink Federation Quickstarts ...</echo>
-    <xslt style="${picketlink.jboss.as.dist}/addSecurityDomain.xslt"
-          basedir="${jboss.as.dist.dir}/standalone/configuration"
-          destdir="${jboss.as.dist.dir}/standalone/configuration" includes="standalone.xml"/>
-    <move overwrite="true" todir="${jboss.as.dist.dir}/standalone/configuration">
-      <filelist dir="${jboss.as.dist.dir}/standalone/configuration">
-        <file name="standalone.html"/>
-      </filelist>
-      <mapper type="regexp" from="^(.*)\.html$$" to="\1.xml"/>
-    </move>
-  </target>
+  <target name="install-picketlink-wildfly" description="Update the PicketLink Module libraries and definition" depends="wildfly.check.test,pre-install-picketlink" if="wildfly.check">
+    <echo>Updating PicketLink Module for Wildfly...</echo>
 
-  <target name="install-picketlink-quickstarts" description="Installs the PicketLink Quickstarts Applications"
-          depends="install-picketlink-quickstarts-security-domains">
-    <echo>Installing PicketLink Quickstarts Applications ...</echo>
-    <unzip src="${picketlink.quickstarts.dist.file}" dest="${basedir}/config/lib" overwrite="true"/>
-    <copy todir="${jboss.as.dist.dir}/standalone/deployments">
-      <fileset dir="config/lib/picketlink">
-        <exclude name="**/pdp.war"/>
+    <property name="picketlink.federation.lib.file" value="${installer.dir}/config/lib/picketlink-federation-${picketlink.version}.jar"/>
+    <property name="picketlink.bindings.wildfly8.lib.file" value="${installer.dir}/config/lib/picketlink-wildfly8-${picketlink.version}.jar"/>
+
+    <copy todir="${modules.dir}/org/picketlink/federation/main" file="${picketlink.federation.lib.file}"/>
+    <copy todir="${modules.dir}/org/picketlink/federation/bindings/main" file="${picketlink.bindings.wildfly8.lib.file}"/>
+
+    <delete>
+      <fileset dir="${modules.dir}/org/picketlink/main">
+        <include name="*.jar"/>
       </fileset>
-    </copy>
+    </delete>
   </target>
 
 </project>
