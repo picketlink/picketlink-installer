@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.picketlink</groupId>
   <artifactId>picketlink-installer</artifactId>
-  <version>1.3.1-SNAPSHOT</version>
+  <version>1.3.1.Final</version>
   <packaging>pom</packaging>
 
   <name>PicketLink: JBoss Application Server v7 Installer</name>
@@ -38,7 +38,7 @@
     <picketlink.installer.scm.connection>git@github.com:picketlink/picketlink-installer.git</picketlink.installer.scm.connection>
     <bundle.dir>${project.build.directory}/bundle</bundle.dir>
     <installer.root.dir>/picketlink-installer-${project.version}</installer.root.dir>
-    <picketlink.version>2.6.0.CR1</picketlink.version>
+    <picketlink.version>2.6.0.CR2</picketlink.version>
   </properties>
 
   <dependencies>
