@@ -10,6 +10,11 @@ It configures a JBoss Enterprise Application Platform 6 installation with all th
 
 Important Note: Once JBoss Enterprise Application Platform 6 is updated with PicketLink 2.5 libraries and tools, the installer will no longer be necessary.
 
+This repository is no longer maintained
+-------------
+
+This repository is no longer maintained and is archived. For more details, please take a look at http://picketlink.org/keycloak-merge-faq.
+
 System Requirements
 -------------------
 
